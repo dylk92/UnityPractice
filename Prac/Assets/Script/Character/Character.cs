@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Character : MonoBehaviour
 {
     [SerializeField] public CharacterSO characterSO;
 
     void Start()
     {
-
+        Init();
+        use();
         StartCoroutine(CharUse());
+    }
+
+    void Init()
+    {
+        Debug.Log(GameManager.Instance.BattleMNG.BattleCharList);
+        GameManager.Instance.BattleMNG.BattleCharList.Add(GetComponent<Character>());
     }
 
     IEnumerator CharUse()
@@ -26,4 +34,6 @@ public class Character : MonoBehaviour
     {
         characterSO.use(gameObject);
     }
+
+    public int GetSpeed() => characterSO.stat.SPD;
 }

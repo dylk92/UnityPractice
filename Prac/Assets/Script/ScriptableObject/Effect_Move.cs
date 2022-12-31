@@ -13,10 +13,11 @@ enum Dir
 [CreateAssetMenu(fileName = "Effect_Move", menuName = "Scriptable Object/Effect_Move", order = 2)]
 public class Effect_Move : EffectSO
 {
-    [SerializeField] Dir MoveDir;
+    [SerializeField] List<Dir> MoveDir;
 
     public override void Effect(GameObject caster)
     {
-        Debug.Log("Move " + MoveDir);
+        for(int i = 0; i < MoveDir.Count; i++)
+            Debug.Log("Move " + MoveDir[i]);
     }
 }

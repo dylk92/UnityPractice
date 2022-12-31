@@ -8,11 +8,20 @@ public struct Stat
 {
     public float HP;
     public float ATK;
+    public int SPD;
+}
+
+[Serializable]
+enum Team
+{
+    Player,
+    Enemy
 }
 
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
 public class CharacterSO : ScriptableObject
 {
+    [SerializeField] Team team;
     [SerializeField] public Stat stat;
     [SerializeField] SkillSO skill;
 
