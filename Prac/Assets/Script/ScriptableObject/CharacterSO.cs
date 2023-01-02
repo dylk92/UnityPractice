@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 캐릭터의 스탯
 [Serializable]
 public struct Stat
 {
@@ -11,6 +12,7 @@ public struct Stat
     public int SPD;
 }
 
+// 캐릭터의 팀
 [Serializable]
 public enum Team
 {
@@ -25,6 +27,7 @@ public class CharacterSO : ScriptableObject
     [SerializeField] public Stat stat;
     [SerializeField] SkillSO skill;
 
+    // 캐릭터의 스킬 사용
     public void use(Character ch)
     {
         skill.use(ch);

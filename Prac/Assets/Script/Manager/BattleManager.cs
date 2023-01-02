@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 전투를 담당하는 매니저
+// 필드와 턴의 관리
+// 필드에 올라와있는 캐릭터의 제어를 배틀매니저에서 담당
+
 public class BattleManager : MonoBehaviour
 {
+    // 전투가 진행되는 필드
     #region BattleField
     [SerializeField] Field _BattleField;
     public Field BattleField => _BattleField;
     #endregion
 
+    // 전투를 진행중인 캐릭터가 들어있는 리스트
     List<Character> BattleCharList = new List<Character>();
 
+    // 리스트에 캐릭터를 추가 / 제거
+    #region CharEnter / Exit
     public void CharEnter(Character ch)
     {
         BattleCharList.Add(ch);
     }
-
     public void CharExit(Character ch)
     {
         BattleCharList.Remove(ch);
     }
+    #endregion
 
     #region OrderSort
 
@@ -71,13 +79,14 @@ public class BattleManager : MonoBehaviour
 
     #endregion
 
+    // 턴 진행
     public void TurnStart()
     {
         CharTurnReplace();
 
         StartCoroutine(CharUse());
     }
-
+    //턴에 딜레이 주기(어떻게 줘야할까?)
     IEnumerator CharUse()
     {
         for (int i = 0; i < BattleCharList.Count; i++)

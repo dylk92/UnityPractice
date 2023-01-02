@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//
-//
-//
+// 필드 위에 올려진 캐릭터의 스크립트
+// 스킬 사용, 이동, 데미지와 사망판정을 처리
 
 public class Character : MonoBehaviour
 {
@@ -41,6 +40,7 @@ public class Character : MonoBehaviour
     {
         GameManager.Instance.BattleMNG.CharEnter(GetComponent<Character>());
 
+        // 적군일 경우 x축 뒤집기
         SR.flipX = (characterSO.team == Team.Enemy) ? true : false;
         MaxHP = CurHP = characterSO.stat.HP;
     }
@@ -57,6 +57,7 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
+    // 이동 경로를 받아와 이동시킨다
     public void MoveLotate(int x, int y)
     {
         Tiles[LocY, LocX].ExitTile();
@@ -64,11 +65,13 @@ public class Character : MonoBehaviour
         int dumpX = locX;
         int dumpY = locY;
 
+        // 타일 범위를 벗어난 이동이면 이동하지 않음
         if(0 <= locX + x && locX + x < 8)
             dumpX += x;
         if (0 <= locY + y && locY + y < 3)
             dumpY += y;
 
+        // 이동할 곳이 비어있지 않다면 이동하지 않음
         if(!Tiles[dumpY, dumpX].isOnTile)
         {
             locX = dumpX;
@@ -79,14 +82,17 @@ public class Character : MonoBehaviour
         SetLotate();
     }
 
+    // 타일 위로 이동
     public void SetLotate()
     {
         Vector3 vec = GameManager.Instance.BattleMNG.BattleField.GetTileLocate(LocX, LocY);
         transform.position = vec;
 
+        // 현재 타일에 내가 들어왔다고 알려줌 
         Tiles[LocY, LocX].EnterTile(GetComponent<Character>());
     }
 
+    // 데미지를 받을 때
     public void GetDamage(float DMG)
     {
         CurHP -= DMG;
@@ -94,11 +100,12 @@ public class Character : MonoBehaviour
         DeadCheck();
     }
 
+    // 캐릭터가 사망했는지 확인
     void DeadCheck()
     {
         if(CurHP <= 0)
         {
-            // 죽었을 때 처리
+            // 죽었을 때 처리할 것들
             GameManager.Instance.BattleMNG.CharExit(GetComponent<Character>());
             Tiles[LocY, LocX].ExitTile();
 
