@@ -12,7 +12,7 @@ public struct Stat
 }
 
 [Serializable]
-enum Team
+public enum Team
 {
     Player,
     Enemy
@@ -21,12 +21,12 @@ enum Team
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Object/Character", order = 0)]
 public class CharacterSO : ScriptableObject
 {
-    [SerializeField] Team team;
+    [SerializeField] public Team team;
     [SerializeField] public Stat stat;
     [SerializeField] SkillSO skill;
 
-    public void use(GameObject go)
+    public void use(Character ch)
     {
-        skill.use(go);
+        skill.use(ch);
     }
 }

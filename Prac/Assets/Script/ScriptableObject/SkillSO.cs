@@ -8,11 +8,11 @@ public class SkillSO : ScriptableObject
 {
     [SerializeField] List<EffectSO> EffectList;
 
-    public void use(GameObject go)
+    public void use(Character ch)
     {
         for(int i = 0; i < EffectList.Count; i++)
         {
-            EffectList[i].Effect(go);
+            EffectList[i].Effect(ch);
         }
     }
 }

@@ -378,6 +378,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Script/Character/Character.cs"
+"Assets/Script/Field/Field.cs"
+"Assets/Script/Field/Tile.cs"
 "Assets/Script/Manager/BattleManager.cs"
 "Assets/Script/Manager/GameManager.cs"
 "Assets/Script/ScriptableObject/CharacterSO.cs"
