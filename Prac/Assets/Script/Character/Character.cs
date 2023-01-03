@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     public int LocX => locX;
     public int LocY => locY;
     #endregion
-    float MaxHP, CurHP;
+    [SerializeField] float MaxHP, CurHP;
 
 
     void Start()
@@ -40,6 +40,10 @@ public class Character : MonoBehaviour
     {
         GameManager.Instance.BattleMNG.CharEnter(GetComponent<Character>());
 
+        // sprite를 배치했다면 변경하기
+        if (characterSO.sprite != null)
+            SR.sprite = characterSO.sprite;
+
         // 적군일 경우 x축 뒤집기
         SR.flipX = (characterSO.team == Team.Enemy) ? true : false;
         MaxHP = CurHP = characterSO.stat.HP;
@@ -48,13 +52,7 @@ public class Character : MonoBehaviour
     // 스킬 사용
     public void use()
     {
-        StartCoroutine(CoUse());
-    }
-    IEnumerator CoUse()
-    {
         characterSO.use(GetComponent<Character>());
-
-        yield return new WaitForSeconds(0.5f);
     }
 
     // 이동 경로를 받아와 이동시킨다
@@ -96,7 +94,12 @@ public class Character : MonoBehaviour
     public void GetDamage(float DMG)
     {
         CurHP -= DMG;
+
         Debug.Log("DMG : " + DMG + ", CurHP ; " + CurHP);
+
+        if (MaxHP <= CurHP)
+            CurHP = MaxHP;
+
         DeadCheck();
     }
 

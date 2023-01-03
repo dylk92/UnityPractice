@@ -19,6 +19,8 @@ public class BattleManager : MonoBehaviour
     // 전투를 진행중인 캐릭터가 들어있는 리스트
     List<Character> BattleCharList = new List<Character>();
 
+    bool CanTurnStart = true;
+
     // 리스트에 캐릭터를 추가 / 제거
     #region CharEnter / Exit
     public void CharEnter(Character ch)
@@ -84,9 +86,13 @@ public class BattleManager : MonoBehaviour
     // 턴 진행
     public void TurnStart()
     {
-        CharTurnReplace();
+        if (CanTurnStart)
+        {
+            CanTurnStart = false;
+            CharTurnReplace();
 
-        StartCoroutine(CharUse());
+            StartCoroutine(CharUse());
+        }
     }
     //턴에 딜레이 주기(어떻게 줘야할까?)
     IEnumerator CharUse()
@@ -95,7 +101,7 @@ public class BattleManager : MonoBehaviour
         {
             BattleCharList[i].use();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
 
         TurnEnd();
@@ -104,5 +110,6 @@ public class BattleManager : MonoBehaviour
     void TurnEnd()
     {
         PlayerMana.AddMana(2);
+        CanTurnStart = true;
     }
 }

@@ -24,6 +24,7 @@ public enum Team
 public class CharacterSO : ScriptableObject
 {
     [SerializeField] public Team team;
+    [SerializeField] public Sprite sprite;
     [SerializeField] public Stat stat;
     [SerializeField] SkillSO skill;
 

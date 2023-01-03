@@ -28,7 +28,7 @@ public class Effect_Attack : EffectSO
             {
                 if(0 <= y && y < 3)
                 {
-                    Tiles[y, x].Attacked(caster);
+                    Tiles[y, x].OnAttack(caster);
                 }
             }
         }

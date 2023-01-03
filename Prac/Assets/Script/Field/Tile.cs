@@ -33,12 +33,12 @@ public class Tile : MonoBehaviour
         chara = null;
     }
 
-    public void Attacked(Character ch)
+    #region OnAttack
+    public void OnAttack(Character ch)
     {
-        StartCoroutine(CoAttacked(ch));
+        StartCoroutine(CoOnAttack(ch));
     }
-
-    IEnumerator CoAttacked(Character AttackChar)
+    IEnumerator CoOnAttack(Character AttackChar)
     {
         SR.color = Color.red;
 
@@ -55,4 +55,29 @@ public class Tile : MonoBehaviour
         SR.color = Color.gray;
 
     }
+    #endregion
+
+    #region OnHeal
+    public void OnHeal(Character ch)
+    {
+        StartCoroutine(CoOnHeal(ch));
+    }
+    IEnumerator CoOnHeal(Character AttackChar)
+    {
+        SR.color = Color.white;
+
+        if (chara != null)
+        {
+            if (AttackChar.characterSO.team == chara.characterSO.team)
+            {
+                chara.GetDamage(-AttackChar.characterSO.stat.ATK);
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        SR.color = Color.gray;
+
+    }
+    #endregion
 }
