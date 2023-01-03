@@ -15,10 +15,11 @@ public class Field : MonoBehaviour
     {
         FieldSet();
     }
-
-
+    
     void FieldSet()
     {
+        Vector3 vec = transform.position;
+
         float disX = transform.localScale.x / MaxX;
         float disY = transform.localScale.y / MaxY;
 
@@ -30,7 +31,7 @@ public class Field : MonoBehaviour
                 float y = disY * i;
 
                 GameObject tile = GameObject.Instantiate(TilePrefabs, gameObject.transform);
-                tile.transform.position = new Vector3(x, y);
+                tile.transform.position = new Vector3(vec.x + x, vec.y + y);
 
                 TileArray[i + 1, j + 4] = tile.GetComponent<Tile>();
             }

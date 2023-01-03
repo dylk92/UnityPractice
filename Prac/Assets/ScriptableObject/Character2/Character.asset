@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   team: 1
+  sprite: {fileID: 896847838, guid: eb7ad12398d922046acaedb62cbaed67, type: 3}
   stat:
     HP: 50
     ATK: 10

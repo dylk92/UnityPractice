@@ -385,9 +385,11 @@
 "Assets/Script/ScriptableObject/CharacterSO.cs"
 "Assets/Script/ScriptableObject/EffectSO.cs"
 "Assets/Script/ScriptableObject/Effect_Attack.cs"
+"Assets/Script/ScriptableObject/Effect_Heal.cs"
 "Assets/Script/ScriptableObject/Effect_Move.cs"
 "Assets/Script/ScriptableObject/RangeSO.cs"
 "Assets/Script/ScriptableObject/SkillSO.cs"
+"Assets/Script/UI/ManaGuage.cs"
 -langversion:9.0
 
 /deterministic

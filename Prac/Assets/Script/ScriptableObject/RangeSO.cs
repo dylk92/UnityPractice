@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 
 
+// RangeSO의 커스텀 에디터
 [CustomEditor(typeof(RangeSO))]
 public class RangeEditor : Editor
 {
@@ -55,6 +56,7 @@ public class RangeEditor : Editor
     }
 }
 
+
 [Serializable]
 [CreateAssetMenu(fileName = "Attack_Range", menuName = "Scriptable Object/Attack_Range", order = 4)]
 public class RangeSO : ScriptableObject
@@ -64,6 +66,7 @@ public class RangeSO : ScriptableObject
 
     [SerializeField] [HideInInspector] public bool[] AttackRange = new bool[row * column];
 
+    // 공격범위를 캐릭터의 위치를 (0, 0)으로 간주하고 리스트로 반환
     public List<Vector2> GetRange()
     {
         List<Vector2> RangeList = new List<Vector2>();
